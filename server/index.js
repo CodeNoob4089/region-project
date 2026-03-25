@@ -12,10 +12,15 @@ const PORT = 4000;
 
 app.get("/api/legion", async (req, res) => {
   try {
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: ["--no-sandbox"]
-    });
+const browser = await puppeteer.launch({
+  headless: true,
+  args: [
+    "--no-sandbox",
+    "--disable-setuid-sandbox",
+    "--disable-dev-shm-usage",
+    "--disable-gpu"
+  ]
+});
 
     const page = await browser.newPage();
 
